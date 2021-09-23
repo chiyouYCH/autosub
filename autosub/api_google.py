@@ -16,11 +16,11 @@ from autosub import exceptions
 from autosub import constants
 
 if constants.IS_GOOGLECLOUDCLIENT:
-    from google.cloud import speech_v1p1beta1
+    from google.cloud import speech_v1
     from google.protobuf.json_format import MessageToDict
-    from google.cloud.speech_v1p1beta1 import enums
+    from google.cloud.speech_v1 import types
 else:
-    speech_v1p1beta1 = None  # pylint: disable=invalid-name
+    speech_v1 = None  # pylint: disable=invalid-name
     MessageToDict = None  # pylint: disable=invalid-name
     enums = None  # pylint: disable=invalid-name
 
@@ -260,9 +260,10 @@ def gcsv1p1beta1_service_client(
         # https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries
         # https://cloud.google.com/speech-to-text/docs/basics
         # https://cloud.google.com/speech-to-text/docs/reference/rpc/google.cloud.speech.v1p1beta1#google.cloud.speech.v1p1beta1.SpeechRecognitionResult
-        client = speech_v1p1beta1.SpeechClient()
+        client = speech_v1.SpeechClient()
         audio_dict = {"content": audio_data}
-        recognize_response = client.recognize(config, audio_dict)
+        # recognize_response = client.recognize(config, audio_dict)
+        recognize_response = []
         result_dict = MessageToDict(
             recognize_response,
             preserving_proto_field_name=True)

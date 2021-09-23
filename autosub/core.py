@@ -564,8 +564,6 @@ def list_to_googletrans(  # pylint: disable=too-many-locals, too-many-arguments,
         dst_language=constants.DEFAULT_DST_LANGUAGE,
         size_per_trans=constants.DEFAULT_SIZE_PER_TRANS,
         sleep_seconds=constants.DEFAULT_SLEEP_SECONDS,
-        user_agent=None,
-        service_urls=None,
         drop_override_codes=False,
         delete_chars=None):
     """
@@ -575,9 +573,7 @@ def list_to_googletrans(  # pylint: disable=too-many-locals, too-many-arguments,
     if not text_list:
         return None
 
-    translator = googletrans.Translator(
-        user_agent=user_agent,
-        service_urls=service_urls)
+    translator = googletrans.Translator()
 
     size = 0
     i = 0
